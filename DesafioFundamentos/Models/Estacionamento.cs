@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace DesafioFundamentos.Models
 {
     public class Estacionamento
@@ -39,7 +41,7 @@ namespace DesafioFundamentos.Models
 
                 veiculos.Remove(placa);
 
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: {valorTotal.ToString("C", new CultureInfo("pt-BR"))}");
             }
             else
             {
@@ -49,7 +51,6 @@ namespace DesafioFundamentos.Models
 
         public void ListarVeiculos()
         {
-            // Verifica se há veículos no estacionamento
             if (veiculos.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
