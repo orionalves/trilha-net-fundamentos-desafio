@@ -27,7 +27,7 @@ namespace DesafioFundamentos.Models
 
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
             {
-                int horas;
+                int horas = 0;
                 bool horasVálidas = false;
                 while (!horasVálidas)
                 {
@@ -35,9 +35,7 @@ namespace DesafioFundamentos.Models
                     horasVálidas = int.TryParse(Console.ReadLine(), out horas);
                 }
 
-                // TODO: Realizar o seguinte cálculo: "precoInicial + precoPorHora * horas" para a variável valorTotal                
-                // *IMPLEMENTE AQUI*
-                decimal valorTotal = 0;
+                decimal valorTotal = precoInicial + (precoPorHora * horas);
 
                 // TODO: Remover a placa digitada da lista de veículos
                 // *IMPLEMENTE AQUI*
