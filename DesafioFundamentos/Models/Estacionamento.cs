@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace DesafioFundamentos.Models
 {
@@ -6,6 +7,7 @@ namespace DesafioFundamentos.Models
     {
         private decimal precoInicial = 0;
         private decimal precoPorHora = 0;
+        private string padrão = @"^[a-zA-Z]{3}\d[a-zA-Z0-9]\d{2}$";
         private List<string> veiculos = new List<string>();
 
         public Estacionamento(decimal precoInicial, decimal precoPorHora)
@@ -18,7 +20,19 @@ namespace DesafioFundamentos.Models
         {
             Console.WriteLine("Digite a placa do veículo para estacionar:");
             string novoVeiculo = Console.ReadLine();
-            veiculos.Add(novoVeiculo);
+            if (veiculos.Any(x => x.ToUpper() == novoVeiculo.ToUpper()))
+            {
+                Console.WriteLine("Desculpe, esse veículo já está estacionado aqui. Confira se digitou a placa corretamente");
+            }
+            else if (Regex.IsMatch(novoVeiculo, padrão))
+            {
+                veiculos.Add(novoVeiculo);
+                Console.WriteLine($"Veículo {novoVeiculo} adicionado com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Desculpe, a placa precisa estar no padrão alfanumério brasileiro: LLLNNNN ou LLLNLNN");
+            }
         }
 
         public void RemoverVeiculo()
